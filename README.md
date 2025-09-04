@@ -1,0 +1,1 @@
+# ah5-application-aitia-common-java-spring
