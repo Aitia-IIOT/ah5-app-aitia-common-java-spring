@@ -21,17 +21,114 @@ public final class Constants {
 	//=================================================================================================
 	// members
 
+	public static final String DOT = ".";
+	public static final String COMPOSITE_ID_DELIMITER = "|";
+	public static final String COMPOSITE_ID_DELIMITER_REGEXP = "\\|";
+
 	public static final String BASE_PACKAGE = "ai.aitia.arrowhead";
 	public static final String COMMON_BASE_PACKAGE = "eu.arrowhead";
 
 	public static final String SECURITY_REQ_AUTHORIZATION = "Authorization";
 	public static final String UTC = "UTC";
 	public static final String UNKNOWN = "<unknown>";
+	public static final String PKCS12 = "PKCS12";
+	public static final String LOCALHOST = "localhost";
+	public static final String HTTPS = "https";
+	public static final String HTTP = "http";
+	public static final int HTTP_PORT = 80;
+	public static final String ARROWHEAD_CONTEXT = "arrowheadContext";
+	public static final String SERVER_STANDALONE_MODE = "server.standalone.mode";
+	public static final String SERVER_COMMON_NAME = "server.common.name";
+	public static final String SERVER_PUBLIC_KEY = "server.public.key";
+	public static final String SERVER_PRIVATE_KEY = "server.private.key";
+	public static final String SERVER_CERTIFICATE = "server.certificate";
+
+	public static final String KEY_IDENTITY_TOKEN = "identity-token";
+	public static final String KEY_IDENTITY_RENEWAL_THRESHOLD = "identity-renewal-threshold";
+	public static final String KEY_PREFIX_FOR_SERVICE_MODEL = "service-model$$";
+
+	public static final String METADATA_KEY_X509_PUBLIC_KEY = "x509PublicKey";
+
+	public static final String GENERIC_HTTP_INTERFACE_TEMPLATE_NAME = "generic_http";
+	public static final String GENERIC_HTTPS_INTERFACE_TEMPLATE_NAME = "generic_https";
+	public static final String GENERIC_MQTT_INTERFACE_TEMPLATE_NAME = "generic_mqtt";
+	public static final String GENERIC_MQTTS_INTERFACE_TEMPLATE_NAME = "generic_mqtts";
+
+	public static final int MIN_PORT = 1;
+	public static final int MAX_PORT = 65535;
+	public static final long CONVERSION_MILLISECOND_TO_SECOND = 1000;
+	public static final long CONVERSION_MILLISECOND_TO_MINUTE = 60000;
+
+	public static final String NORMALIZATION_MODE = "normalization.mode";
+	public static final String $NORMALIZATION_MODE_WD = "${" + NORMALIZATION_MODE + ":" + Defaults.NORMALIZATION_MODE_DEFAULT + "}";
+
+	// System related
+
+	public static final String SYS_NAME_SERVICE_REGISTRY = "ServiceRegistry";
+	public static final String SYS_NAME_DYNAMIC_SERVICE_ORCHESTRATION = "DynamicServiceOrchestration";
+	public static final String SYS_NAME_FLEXIBLE_SERVICE_ORCHESTRATION = "FlexibleServiceOrchestration";
+
+	public static final String SERVER_ADDRESS = "server.address";
+	public static final String $SERVER_ADDRESS = "${" + SERVER_ADDRESS + ":" + Defaults.SERVER_ADDRESS_DEFAULT + "}";
+	public static final String SERVER_PORT = "server.port";
+	public static final String $SERVER_PORT = "${" + SERVER_PORT + ":" + Defaults.SERVER_PORT_DEFAULT + "}";
+	public static final String DOMAIN_NAME = "domain.name";
+	public static final String $DOMAIN_NAME = "${" + DOMAIN_NAME + ":" + Defaults.DOMAIN_NAME_DEFAULT + "}";
+	public static final String SERVICE_REGISTRY_ADDRESS = "service.registry.address";
+	public static final String $SERVICE_REGISTRY_ADDRESS_WD = "${" + SERVICE_REGISTRY_ADDRESS + ":" + Defaults.SERVICE_REGISTRY_ADDRESS_DEFAULT + "}";
+	public static final String SERVICE_REGISTRY_PORT = "service.registry.port";
+	public static final String $SERVICE_REGISTRY_PORT_WD = "${" + SERVICE_REGISTRY_PORT + ":" + Defaults.SERVICE_REGISTRY_PORT_DEFAULT + "}";
+	public static final String AUTHENTICATION_POLICY = "authentication.policy";
+	public static final String $AUTHENTICATION_POLICY_WD = "${" + AUTHENTICATION_POLICY + ":" + Defaults.AUTHENTICATION_POLICY_DEFAULT + "}";
+	public static final String AUTHENTICATOR_CREDENTIALS = "authenticator.credentials";
+	public static final String $AUTHENTICATOR_CREDENTIALS = "#{${" + AUTHENTICATOR_CREDENTIALS + ":null}}";
+	public static final String AUTHENTICATIOR_LOGIN_INTERVAL = "authenticator.login.interval";
+	public static final String $AUTHENTICATOR_LOGIN_INTERVAL_WD = "${" + AUTHENTICATIOR_LOGIN_INTERVAL + ":10000}";
+	public static final String AUTHENTICATOR_LOGIN_DELAY = "authenticator.login.delay";
+	public static final String $AUTHENTICATOR_LOGIN_DELAY_WD = "${" + AUTHENTICATOR_LOGIN_DELAY + ":3000}";
+
+	public static final String AUTHENTICATION_SCHEMA = "Bearer";
+	public static final String AUTHENTICATION_KEY_DELIMITER = "//";
+	public static final String AUTHENTICATION_PREFIX_AUTHENTICATOR_KEY = "AUTHENTICATOR-KEY";
+	public static final String AUTHENTICATION_PREFIX_SYSTEM = "SYSTEM";
+	public static final String AUTHENTICATION_PREFIX_IDENTITY_TOKEN = "IDENTITY-TOKEN";
 
 	// SSL related
 
+	public static final int SYSTEM_CERT_CN_LENGTH = 5;
+	public static final int CLOUD_CERT_CN_LENGTH = 4;
+
 	public static final String SERVER_SSL_ENABLED = "server.ssl.enabled";
 	public static final String $SERVER_SSL_ENABLED_WD = "${" + SERVER_SSL_ENABLED + ":" + Defaults.SERVER_SSL_ENABLED_DEFAULT + "}";
+	@SuppressWarnings("checkstyle:ConstantName")
+	public static final String SERVER_SSL_KEY__STORE__TYPE = "server.ssl.key-store-type";
+	@SuppressWarnings("checkstyle:ConstantName")
+	public static final String $SERVER_SSL_KEY__STORE_TYPE_WD = "${" + SERVER_SSL_KEY__STORE__TYPE + ":" + Defaults.SERVER_SSL_KEY__STORE__TYPE_DEFAULT + "}";
+	@SuppressWarnings("checkstyle:ConstantName")
+	public static final String SERVER_SSL_KEY__STORE = "server.ssl.key-store";
+	@SuppressWarnings("checkstyle:ConstantName")
+	public static final String $SERVER_SSL_KEY__STORE_WD = "${" + SERVER_SSL_KEY__STORE + ":" + Defaults.SERVER_SSL_KEY__STORE_DEFAULT + "}";
+	@SuppressWarnings("checkstyle:ConstantName")
+	public static final String SERVER_SSL_KEY__STORE__PASSWORD = "server.ssl.key-store-password";
+	@SuppressWarnings("checkstyle:ConstantName")
+	public static final String $SERVER_SSL_KEY__STORE__PASSWORD_WD = "${" + SERVER_SSL_KEY__STORE__PASSWORD + ":" + Defaults.SERVER_SSL_KEY__STORE__PASSWORD_DEFAULT + "}";
+	@SuppressWarnings("checkstyle:ConstantName")
+	public static final String SERVER_SSL_KEY__PASSWORD = "server.ssl.key-password";
+	@SuppressWarnings("checkstyle:ConstantName")
+	public static final String $SERVER_SSL_KEY__PASSWORD_WD = "${" + SERVER_SSL_KEY__PASSWORD + ":" + Defaults.SERVER_SSL_KEY__PASSWORD_DEFAULT + "}";
+	@SuppressWarnings("checkstyle:ConstantName")
+	public static final String SERVER_SSL_KEY__ALIAS = "server.ssl.key-alias";
+	@SuppressWarnings("checkstyle:ConstantName")
+	public static final String $SERVER_SSL_KEY__ALIAS_WD = "${" + SERVER_SSL_KEY__ALIAS + ":" + Defaults.SERVER_SSL_KEY__ALIAS_DEFAULT + "}";
+	@SuppressWarnings("checkstyle:ConstantName")
+	public static final String SERVER_SSL_TRUST__STORE = "server.ssl.trust-store";
+	@SuppressWarnings("checkstyle:ConstantName")
+	public static final String $SERVER_SSL_TRUST__STORE_WD = "${" + SERVER_SSL_TRUST__STORE + ":" + Defaults.SERVER_SSL_TRUST__STORE_DEFAULT + "}";
+	@SuppressWarnings("checkstyle:ConstantName")
+	public static final String SERVER_SSL_TRUST__STORE__PASSWORD = "server.ssl.trust-store-password";
+	@SuppressWarnings("checkstyle:ConstantName")
+	public static final String $SERVER_SSL_TRUST__STORE__PASSWORD_WD = "${" + SERVER_SSL_TRUST__STORE__PASSWORD + ":" + Defaults.SERVER_SSL_TRUST__STORE__PASSWORD_DEFAULT + "}";
+
 	public static final String DISABLE_HOSTNAME_VERIFIER = "disable.hostname.verifier";
 	public static final String $DISABLE_HOSTNAME_VERIFIER_WD = "${" + DISABLE_HOSTNAME_VERIFIER + ":" + Defaults.DISABLE_HOSTNAME_VERIFIER_DEFAULT + "}";
 
@@ -54,8 +151,16 @@ public final class Constants {
 	public static final String HTTP_STATUS_INTERNAL_SERVER_ERROR = "500";
 	public static final String HTTP_STATUS_SERVICE_UNAVAILABLE = "503";
 
+	public static final String HTTP_ATTR_JAKARTA_SERVLET_REQUEST_X509_CERTIFICATE = "jakarta.servlet.request.X509Certificate";
+
 	public static final String LOG_ALL_REQUEST_AND_RESPONSE = "log.all.request.and.response";
 	public static final String $LOG_ALL_REQUEST_AND_RESPONSE_WD = "${" + LOG_ALL_REQUEST_AND_RESPONSE + ":" + Defaults.LOG_ALL_REQUEST_AND_RESPONSE_DEFAULT + "}";
+	public static final String HTTP_CLIENT_CONNECTION_TIMEOUT = "http.client.connection.timeout";
+	public static final String $HTTP_CLIENT_CONNECTION_TIMEOUT_WD = "${" + HTTP_CLIENT_CONNECTION_TIMEOUT + ":" + Defaults.HTTP_CLIENT_CONNECTION_TIMEOUT_DEFAULT + "}";
+	public static final String HTTP_CLIENT_SOCKET_TIMEOUT = "http.client.socket.timeout";
+	public static final String $HTTP_CLIENT_SOCKET_TIMEOUT_WD = "${" + HTTP_CLIENT_SOCKET_TIMEOUT + ":" + Defaults.HTTP_CLIENT_SOCKET_TIMEOUT_DEFAULT + "}";
+	public static final String HTTP_COLLECTOR_MODE = "http.collector.mode";
+	public static final String $HTTP_COLLECTOR_MODE_WD = "${" + HTTP_COLLECTOR_MODE + ":" + Defaults.HTTP_COLLECTOR_MODE_DEFAULT + "}";
 
 	public static final String HTTP_API_OP_ECHO_PATH = "/echo";
 
@@ -73,6 +178,41 @@ public final class Constants {
 	public static final String SWAGGER_HTTP_404_MESSAGE = "Not found";
 	public static final String SWAGGER_HTTP_500_MESSAGE = "Internal server error";
 	public static final String SWAGGER_HTTP_503_MESSAGE = "Service unavailable";
+
+	// MQTT related
+
+	public static final String MQTT_API_ENABLED = "mqtt.api.enabled";
+	public static final String $MQTT_API_ENABLED_WD = "${" + MQTT_API_ENABLED + ":" + Defaults.MQTT_API_ENABLED_DEFAULT + "}";
+	public static final String MQTT_BROKER_ADDRESS = "mqtt.broker.address";
+	public static final String $MQTT_BROKER_ADDRESS_WD = "${" + MQTT_BROKER_ADDRESS + ":" + Defaults.MQTT_BROKER_ADDRESS_DEFAULT + "}";
+	public static final String MQTT_BROKER_PORT = "mqtt.broker.port";
+	public static final String $MQTT_BROKER_PORT_WD = "${" + MQTT_BROKER_PORT + ":" + Defaults.MQTT_BROKER_PORT_DEFAULT + "}";
+	public static final String MQTT_CLIENT_PASSWORD = "mqtt.client.password";
+	public static final String $MQTT_CLIENT_PASSWORD = "${" + MQTT_CLIENT_PASSWORD + ":" + Defaults.MQTT_CLIENT_PASSWORD_DEFAULT + "}";
+
+	// Service related
+
+	public static final String SERVICE_DEF_SYSTEM_DISCOVERY = "systemDiscovery";
+	public static final String SERVICE_DEF_SERVICE_DISCOVERY = "serviceDiscovery";
+	public static final String SERVICE_DEF_SERVICE_ORCHESTRATION = "serviceOrchestration";
+	public static final String SERVICE_DEF_IDENTITY = "identity";
+
+	public static final String SERVICE_OP_REGISTER = "register";
+	public static final String SERVICE_OP_REVOKE = "revoke";
+	public static final String SERVICE_OP_ORCHESTRATION_PULL = "pull";
+	public static final String SERVICE_OP_IDENTITY_LOGIN = "identity-login";
+	public static final String SERVICE_OP_IDENTITY_LOGOUT = "identity-logout";
+
+	// Common properties
+
+	public static final int VARCHAR_SMALL = 63;
+
+	public static final int SERVICE_OPERATION_NAME_MAX_LENGTH = VARCHAR_SMALL;
+
+	// Quartz related
+
+	public static final String OUTSOURCED_LOGIN_TRIGGER = "outsourcedLoginTrigger";
+	public static final String OUTSOURCED_LOGIN_JOB_FACTORY = "outsourcedLoginJobFactory";
 
 	//=================================================================================================
 	// assistant methods

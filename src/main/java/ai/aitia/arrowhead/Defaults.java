@@ -16,15 +16,56 @@
  *******************************************************************************/
 package ai.aitia.arrowhead;
 
+import eu.arrowhead.common.collector.HttpCollectorMode;
+import eu.arrowhead.common.http.filter.authentication.AuthenticationPolicy;
+import eu.arrowhead.common.service.normalization.NormalizationMode;
+import eu.arrowhead.dto.DTODefaults;
+
 public final class Defaults {
 
 	//=================================================================================================
 	// members
 
 	public static final String CORS_ORIGIN_PATTERN_DEFAULT = "*";
-	public static final String SERVER_SSL_ENABLED_DEFAULT = "false";
-	public static final String DISABLE_HOSTNAME_VERIFIER_DEFAULT = "false";
 	public static final String LOG_ALL_REQUEST_AND_RESPONSE_DEFAULT = "false";
+	public static final String NORMALIZATION_MODE_DEFAULT = NormalizationMode.EXTENDED_VALUE;
+	public static final String DEFAULT_CLOUD = DTODefaults.DEFAULT_CLOUD;
+
+	public static final String SERVER_ADDRESS_DEFAULT = "";
+	public static final String SERVER_PORT_DEFAULT = "0"; // just to avoid NullPointerException
+	public static final String DOMAIN_NAME_DEFAULT = "";
+	public static final String SERVICE_REGISTRY_ADDRESS_DEFAULT = Constants.LOCALHOST;
+	public static final String SERVICE_REGISTRY_PORT_DEFAULT = "8443";
+	public static final String AUTHENTICATION_POLICY_DEFAULT = AuthenticationPolicy.CERTIFICATE_VALUE;
+	public static final String HTTP_COLLECTOR_MODE_DEFAULT = HttpCollectorMode.SR_AND_ORCH_VALUE;
+	public static final String HTTP_CLIENT_CONNECTION_TIMEOUT_DEFAULT = "30000";
+	public static final String HTTP_CLIENT_SOCKET_TIMEOUT_DEFAULT = "30000";
+
+	// SSL related
+
+	public static final String SERVER_SSL_ENABLED_DEFAULT = "false";
+	@SuppressWarnings("checkstyle:ConstantName")
+	public static final String SERVER_SSL_KEY__STORE__TYPE_DEFAULT = Constants.PKCS12;
+	@SuppressWarnings("checkstyle:ConstantName")
+	public static final String SERVER_SSL_KEY__STORE_DEFAULT = "";
+	@SuppressWarnings("checkstyle:ConstantName")
+	public static final String SERVER_SSL_KEY__STORE__PASSWORD_DEFAULT = "";
+	@SuppressWarnings("checkstyle:ConstantName")
+	public static final String SERVER_SSL_KEY__PASSWORD_DEFAULT = "";
+	@SuppressWarnings("checkstyle:ConstantName")
+	public static final String SERVER_SSL_KEY__ALIAS_DEFAULT = "";
+	@SuppressWarnings("checkstyle:ConstantName")
+	public static final String SERVER_SSL_TRUST__STORE_DEFAULT = "";
+	@SuppressWarnings("checkstyle:ConstantName")
+	public static final String SERVER_SSL_TRUST__STORE__PASSWORD_DEFAULT = "";
+	public static final String DISABLE_HOSTNAME_VERIFIER_DEFAULT = "false";
+
+	// MQTT related
+
+	public static final String MQTT_API_ENABLED_DEFAULT = "false";
+	public static final String MQTT_BROKER_ADDRESS_DEFAULT = "";
+	public static final String MQTT_BROKER_PORT_DEFAULT = "1883";
+	public static final String MQTT_CLIENT_PASSWORD_DEFAULT = "";
 
 	//=================================================================================================
 	// assistant methods
