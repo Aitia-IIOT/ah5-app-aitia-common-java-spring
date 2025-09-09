@@ -67,6 +67,8 @@ public final class Constants {
 	public static final String SYS_NAME_SERVICE_REGISTRY = "ServiceRegistry";
 	public static final String SYS_NAME_DYNAMIC_SERVICE_ORCHESTRATION = "DynamicServiceOrchestration";
 	public static final String SYS_NAME_FLEXIBLE_SERVICE_ORCHESTRATION = "FlexibleServiceOrchestration";
+	public static final String SYS_NAME_CONSUMER_AUTHORIZATION = "ConsumerAuthorization";
+	public static final String SYS_NAME_TRANSLATIONMANAGER = "TranslationManager";
 
 	public static final String SERVER_ADDRESS = "server.address";
 	public static final String $SERVER_ADDRESS = "${" + SERVER_ADDRESS + ":" + Defaults.SERVER_ADDRESS_DEFAULT + "}";
@@ -195,11 +197,16 @@ public final class Constants {
 	public static final String SERVICE_DEF_SYSTEM_DISCOVERY = "systemDiscovery";
 	public static final String SERVICE_DEF_SERVICE_DISCOVERY = "serviceDiscovery";
 	public static final String SERVICE_DEF_SERVICE_ORCHESTRATION = "serviceOrchestration";
+	public static final String SERVICE_DEF_AUTHORIZATION_TOKEN = "authorizationToken";
 	public static final String SERVICE_DEF_IDENTITY = "identity";
+	public static final String SERVICE_DEF_TRANSLATION_REPORT = "translationReport";
+	public static final String SERVICE_DEF_INTERFACE_BRIDGE_MANAGEMENT = "interfaceBridgeManagement";
 
 	public static final String SERVICE_OP_REGISTER = "register";
 	public static final String SERVICE_OP_REVOKE = "revoke";
+	public static final String SERVICE_OP_REPORT = "report";
 	public static final String SERVICE_OP_ORCHESTRATION_PULL = "pull";
+	public static final String SERVICE_OP_AUTHORIZATION_TOKEN_REGISTER_ENCRYPTION_KEY = "register-encryption-key";
 	public static final String SERVICE_OP_IDENTITY_LOGIN = "identity-login";
 	public static final String SERVICE_OP_IDENTITY_LOGOUT = "identity-logout";
 
