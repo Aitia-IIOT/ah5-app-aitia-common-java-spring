@@ -40,6 +40,8 @@ public final class Defaults {
 	public static final String HTTP_COLLECTOR_MODE_DEFAULT = HttpCollectorMode.SR_AND_ORCH_VALUE;
 	public static final String HTTP_CLIENT_CONNECTION_TIMEOUT_DEFAULT = "30000";
 	public static final String HTTP_CLIENT_SOCKET_TIMEOUT_DEFAULT = "30000";
+	public static final String ALLOW_SELF_ADDRESSING_DEFAULT = "true";
+	public static final String ALLOW_NON_ROUTABLE_ADDRESSING_DEFAULT = "true";
 
 	// SSL related
 

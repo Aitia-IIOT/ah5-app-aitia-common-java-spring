@@ -88,6 +88,10 @@ public final class Constants {
 	public static final String $AUTHENTICATOR_LOGIN_INTERVAL_WD = "${" + AUTHENTICATIOR_LOGIN_INTERVAL + ":10000}";
 	public static final String AUTHENTICATOR_LOGIN_DELAY = "authenticator.login.delay";
 	public static final String $AUTHENTICATOR_LOGIN_DELAY_WD = "${" + AUTHENTICATOR_LOGIN_DELAY + ":3000}";
+	public static final String ALLOW_SELF_ADDRESSING = "allow.self.addressing";
+	public static final String $ALLOW_SELF_ADDRESSING_WD = "${" + ALLOW_SELF_ADDRESSING + ":" + Defaults.ALLOW_SELF_ADDRESSING_DEFAULT + "}";
+	public static final String ALLOW_NON_ROUTABLE_ADDRESSING = "allow.non.routable.addressing";
+	public static final String $ALLOW_NON_ROUTABLE_ADDRESSING_WD = "${" + ALLOW_NON_ROUTABLE_ADDRESSING + ":" + Defaults.ALLOW_NON_ROUTABLE_ADDRESSING_DEFAULT + "}";
 
 	public static final String AUTHENTICATION_SCHEMA = "Bearer";
 	public static final String AUTHENTICATION_KEY_DELIMITER = "//";
@@ -213,8 +217,12 @@ public final class Constants {
 	// Common properties
 
 	public static final int VARCHAR_SMALL = 63;
+	public static final int VARCHAR_LARGE = 1024;
 
 	public static final int SERVICE_OPERATION_NAME_MAX_LENGTH = VARCHAR_SMALL;
+	public static final int INTERFACE_TEMPLATE_NAME_MAX_LENGTH = VARCHAR_SMALL;
+	public static final int ADDRESS_MAX_LENGTH = VARCHAR_LARGE;
+	public static final int DATA_MODEL_ID_MAX_LENGTH = VARCHAR_SMALL;
 
 	// Quartz related
 

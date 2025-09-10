@@ -115,7 +115,7 @@ public abstract class SystemInfo {
 	};
 
 	//-------------------------------------------------------------------------------------------------
-	protected String getAddress() {
+	public String getAddress() {
 		return addressNormalizer.normalize(domainAddress);
 	}
 
