@@ -46,6 +46,9 @@ public final class Constants {
 	public static final String KEY_IDENTITY_TOKEN = "identity-token";
 	public static final String KEY_IDENTITY_RENEWAL_THRESHOLD = "identity-renewal-threshold";
 	public static final String KEY_PREFIX_FOR_SERVICE_MODEL = "service-model$$";
+	
+	public static final String SETTING_KEY_DATA_MODEL_TRANSLATOR_GET_RESULT_TRIES = "dataModelTranslatorGetResultTries";
+	public static final String SETTING_KEY_DATA_MODEL_TRANSLATOR_GET_RESULT_WAIT = "dataModelTranslatorGetResultWait"; // in ms
 
 	public static final String METADATA_KEY_X509_PUBLIC_KEY = "x509PublicKey";
 
@@ -98,6 +101,8 @@ public final class Constants {
 	public static final String AUTHENTICATION_PREFIX_AUTHENTICATOR_KEY = "AUTHENTICATOR-KEY";
 	public static final String AUTHENTICATION_PREFIX_SYSTEM = "SYSTEM";
 	public static final String AUTHENTICATION_PREFIX_IDENTITY_TOKEN = "IDENTITY-TOKEN";
+	
+	public static final String AUTHORIZATION_SCHEMA = "Bearer";
 
 	// SSL related
 
@@ -213,6 +218,9 @@ public final class Constants {
 	public static final String SERVICE_OP_AUTHORIZATION_TOKEN_REGISTER_ENCRYPTION_KEY = "register-encryption-key";
 	public static final String SERVICE_OP_IDENTITY_LOGIN = "identity-login";
 	public static final String SERVICE_OP_IDENTITY_LOGOUT = "identity-logout";
+	public static final String SERVICE_OP_DATA_MODEL_TRANSLATOR_INIT_TRANSLATION = "init-translation";
+	public static final String SERVICE_OP_DATA_MODEL_TRANSLATOR_ABORT_TRANSLATION = "abort-translation";
+	public static final String SERVICE_OP_DATA_MODEL_TRANSLATOR_GET_TRANSLATION_RESULT = "get-translation-result";
 
 	// Common properties
 
