@@ -32,6 +32,8 @@ import eu.arrowhead.common.http.filter.authentication.AuthenticationPolicy;
 import eu.arrowhead.common.model.ServiceModel;
 import eu.arrowhead.common.model.SystemModel;
 import eu.arrowhead.common.service.validation.address.AddressNormalizer;
+import eu.arrowhead.common.service.validation.name.SystemNameNormalizer;
+import eu.arrowhead.common.service.validation.name.SystemNameValidator;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 
@@ -48,6 +50,10 @@ public abstract class SystemInfo {
 
 	@Value(Constants.$DOMAIN_NAME)
 	private String domainAddress;
+
+	@Value(Constants.$SYSTEM_NAME)
+	private String rawSystemName;
+	private String systemName;
 
 	@Value(Constants.$SERVICE_REGISTRY_ADDRESS_WD)
 	private String serviceRegistryAddress;
@@ -85,11 +91,14 @@ public abstract class SystemInfo {
 	@Resource(name = Constants.ARROWHEAD_CONTEXT)
 	private Map<String, Object> arrowheadContext;
 
+	@Autowired
+	private SystemNameNormalizer systemNameNormalizer;
+
+	@Autowired
+	private SystemNameValidator systemNameValidator;
+
 	//=================================================================================================
 	// methods
-
-	//-------------------------------------------------------------------------------------------------
-	public abstract String getSystemName();
 
 	//-------------------------------------------------------------------------------------------------
 	public abstract SystemModel getSystemModel();
@@ -133,7 +142,7 @@ public abstract class SystemInfo {
 	//-------------------------------------------------------------------------------------------------
 	@PostConstruct
 	private void init() {
-		if (Utilities.isEmpty(getSystemName())) {
+		if (Utilities.isEmpty(rawSystemName)) {
 			throw new InvalidParameterException("System name is missing or empty");
 		}
 
@@ -153,7 +162,14 @@ public abstract class SystemInfo {
 			throw new InvalidParameterException("No credentials are specified to login to the authentication system");
 		}
 
+		initSystemName();
 		customInit();
+	}
+
+	//-------------------------------------------------------------------------------------------------
+	private void initSystemName() {
+		systemName = systemNameNormalizer.normalize(rawSystemName);
+		systemNameValidator.validateSystemName(systemName);
 	}
 
 	//=================================================================================================
@@ -173,6 +189,11 @@ public abstract class SystemInfo {
 	public String getDomainAddress() {
 		return domainAddress;
 	}
+
+	//-------------------------------------------------------------------------------------------------
+	public String getSystemName() {
+		return systemName;
+	};
 
 	//-------------------------------------------------------------------------------------------------
 	public String getServiceRegistryAddress() {

@@ -32,7 +32,7 @@ public abstract class DefaultSwaggerConfig implements WebMvcConfigurer {
 	//=================================================================================================
 	// members
 
-	private final String systemName;
+	private String systemName;
 	private final String systemVersion;
 
 	//=================================================================================================
@@ -42,6 +42,13 @@ public abstract class DefaultSwaggerConfig implements WebMvcConfigurer {
 	public DefaultSwaggerConfig(final String systemName, final String systemVersion) {
 		this.systemName = systemName;
 		this.systemVersion = systemVersion;
+	}
+
+	//-------------------------------------------------------------------------------------------------
+	public void setSystemName(final String systemName) {
+		if (this.systemName == null) {
+			this.systemName = systemName;
+		}
 	}
 
 	//-------------------------------------------------------------------------------------------------

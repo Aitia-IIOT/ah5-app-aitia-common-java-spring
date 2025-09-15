@@ -26,6 +26,7 @@ import java.security.cert.CertificateException;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.KeyManagerFactory;
@@ -38,7 +39,9 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.data.util.Pair;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Component;
@@ -306,6 +309,94 @@ public class HttpService {
 	//-------------------------------------------------------------------------------------------------
 	public <T> T sendRequest(final UriComponents uri, final HttpMethod method, final ParameterizedTypeReference<T> responseType) {
 		return sendRequest(uri, method, responseType, null, null, null);
+	}
+
+	//-------------------------------------------------------------------------------------------------
+	public <T, P> Pair<Integer, Optional<T>> sendRequestAndReturnStatus(
+			final UriComponents uri,
+			final HttpMethod method,
+			final Class<T> responseType,
+			final P payload,
+			final SslContext givenContext,
+			final Map<String, String> customHeaders) {
+		logger.debug("sendRequest started...");
+		Assert.notNull(method, "Request method is not defined");
+		logger.debug("Sending {} request to: {}", method, uri);
+
+		if (uri == null) {
+			logger.error("sendRequest() is called with null URI.");
+			throw new NullPointerException("HttpService.sendRequest method received null URI");
+		}
+
+		if (NOT_SUPPORTED_METHODS.contains(method)) {
+			throw new MethodNotFoundException("Invalid method type was given to the HttpService.sendRequest() method");
+		}
+
+		final boolean secure = Constants.HTTPS.equalsIgnoreCase(uri.getScheme());
+		if (secure && sslClient == null) {
+			logger.debug("sendRequest(): secure request sending was invoked in insecure mode");
+			throw new ForbiddenException("SSL Context is not set, but secure request sending was invoked. An insecure application may not send requests to secure servers");
+		}
+
+		HttpClient usedClient;
+		if (secure) {
+			usedClient = givenContext != null ? createHttpClient(givenContext) : sslClient;
+		} else {
+			usedClient = httpClient;
+		}
+
+		try {
+			final WebClient client = createWebClient(usedClient);
+			final RequestBodySpec spec = client
+					.method(method)
+					.uri(uri.toUri());
+
+			RequestHeadersSpec<?> headersSpec = (payload != null) ? spec.bodyValue(payload) : spec;
+
+			if (!Utilities.isEmpty(customHeaders)) {
+				for (final Entry<String, String> header : customHeaders.entrySet()) {
+					headersSpec = headersSpec.header(header.getKey(), header.getValue());
+				}
+			}
+
+			int status = HttpStatus.OK.value();
+			final T response = headersSpec
+					.retrieve()
+					.onStatus(httpStatus -> httpStatus.is2xxSuccessful(), clientResponse -> {
+						clientResponse.statusCode().value();
+						return null;
+					})
+					.bodyToMono(responseType)
+					.block();
+
+			return Pair.of(
+					status,
+					response == null ? Optional.empty() : Optional.of(response));
+		} catch (final WebClientResponseException ex) {
+			throw convertWebClientException(ex, uri.toString());
+		} catch (final Exception ex) {
+			if (ex.getCause() != null) {
+				final Throwable throwable = ex.getCause();
+				final String message = throwable.getMessage();
+				if (message != null && message.contains(ERROR_MESSAGE_PART_PKIX_PATH)) {
+					logger.error("The system at {} is not part of the same certificate chain of trust", uri.toUriString());
+					logger.debug("Exception:", throwable);
+					throw new ForbiddenException("The system at " + uri.toUriString() + " is not part of the same certificate chain of trust");
+				} else if (message != null && (message.contains(ERROR_MESSAGE_PART_SUBJECT_ALTERNATIVE_NAMES) || message.contains(ERROR_MESSAGE_PART_X509_NAME))) {
+					logger.error("The certificate of the system at {} does not contain the specified IP address or DNS name as a Subject Alternative Name", uri.toString());
+					logger.debug("Exception: ", throwable);
+					throw new AuthException("The certificate of the system at " + uri.toString() + " does not contain the specified IP address or DNS name as a Subject Alternative Name");
+				}
+
+				logger.error("Service unavailable at {}", uri.toUriString());
+				logger.debug("Exception:", throwable);
+				throw new ExternalServerError("Could not get any response from: " + uri.toUriString());
+			}
+
+			logger.error("Service unavailable at {}", uri.toUriString());
+			logger.debug("Exception", ex);
+			throw new ExternalServerError("Could not get any response from: " + uri.toUriString());
+		}
 	}
 
 	//-------------------------------------------------------------------------------------------------

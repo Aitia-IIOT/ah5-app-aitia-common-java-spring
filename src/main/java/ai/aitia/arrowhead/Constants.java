@@ -46,7 +46,7 @@ public final class Constants {
 	public static final String KEY_IDENTITY_TOKEN = "identity-token";
 	public static final String KEY_IDENTITY_RENEWAL_THRESHOLD = "identity-renewal-threshold";
 	public static final String KEY_PREFIX_FOR_SERVICE_MODEL = "service-model$$";
-	
+
 	public static final String SETTING_KEY_DATA_MODEL_TRANSLATOR_GET_RESULT_TRIES = "dataModelTranslatorGetResultTries";
 	public static final String SETTING_KEY_DATA_MODEL_TRANSLATOR_GET_RESULT_WAIT = "dataModelTranslatorGetResultWait"; // in ms
 
@@ -71,7 +71,7 @@ public final class Constants {
 	public static final String SYS_NAME_DYNAMIC_SERVICE_ORCHESTRATION = "DynamicServiceOrchestration";
 	public static final String SYS_NAME_FLEXIBLE_SERVICE_ORCHESTRATION = "FlexibleServiceOrchestration";
 	public static final String SYS_NAME_CONSUMER_AUTHORIZATION = "ConsumerAuthorization";
-	public static final String SYS_NAME_TRANSLATIONMANAGER = "TranslationManager";
+	public static final String SYS_NAME_TRANSLATION_MANAGER = "TranslationManager";
 
 	public static final String SERVER_ADDRESS = "server.address";
 	public static final String $SERVER_ADDRESS = "${" + SERVER_ADDRESS + ":" + Defaults.SERVER_ADDRESS_DEFAULT + "}";
@@ -79,6 +79,8 @@ public final class Constants {
 	public static final String $SERVER_PORT = "${" + SERVER_PORT + ":" + Defaults.SERVER_PORT_DEFAULT + "}";
 	public static final String DOMAIN_NAME = "domain.name";
 	public static final String $DOMAIN_NAME = "${" + DOMAIN_NAME + ":" + Defaults.DOMAIN_NAME_DEFAULT + "}";
+	public static final String SYSTEM_NAME = "system.name";
+	public static final String $SYSTEM_NAME = "${" + SYSTEM_NAME + "}";
 	public static final String SERVICE_REGISTRY_ADDRESS = "service.registry.address";
 	public static final String $SERVICE_REGISTRY_ADDRESS_WD = "${" + SERVICE_REGISTRY_ADDRESS + ":" + Defaults.SERVICE_REGISTRY_ADDRESS_DEFAULT + "}";
 	public static final String SERVICE_REGISTRY_PORT = "service.registry.port";
@@ -101,7 +103,7 @@ public final class Constants {
 	public static final String AUTHENTICATION_PREFIX_AUTHENTICATOR_KEY = "AUTHENTICATOR-KEY";
 	public static final String AUTHENTICATION_PREFIX_SYSTEM = "SYSTEM";
 	public static final String AUTHENTICATION_PREFIX_IDENTITY_TOKEN = "IDENTITY-TOKEN";
-	
+
 	public static final String AUTHORIZATION_SCHEMA = "Bearer";
 
 	// SSL related
@@ -227,6 +229,7 @@ public final class Constants {
 	public static final int VARCHAR_SMALL = 63;
 	public static final int VARCHAR_LARGE = 1024;
 
+	public static final int SYSTEM_NAME_MAX_LENGTH = VARCHAR_SMALL;
 	public static final int SERVICE_OPERATION_NAME_MAX_LENGTH = VARCHAR_SMALL;
 	public static final int INTERFACE_TEMPLATE_NAME_MAX_LENGTH = VARCHAR_SMALL;
 	public static final int ADDRESS_MAX_LENGTH = VARCHAR_LARGE;
