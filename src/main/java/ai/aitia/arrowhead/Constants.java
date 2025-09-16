@@ -51,6 +51,9 @@ public final class Constants {
 	public static final String SETTING_KEY_DATA_MODEL_TRANSLATOR_GET_RESULT_WAIT = "dataModelTranslatorGetResultWait"; // in ms
 
 	public static final String METADATA_KEY_X509_PUBLIC_KEY = "x509PublicKey";
+	public static final String METADATA_KEY_INTERFACE_BRIDGE = "interfaceBridge";
+	public static final String METADATA_KEY_FROM = "from";
+	public static final String METADATA_KEY_TO = "to";
 
 	public static final String GENERIC_HTTP_INTERFACE_TEMPLATE_NAME = "generic_http";
 	public static final String GENERIC_HTTPS_INTERFACE_TEMPLATE_NAME = "generic_https";
@@ -223,6 +226,9 @@ public final class Constants {
 	public static final String SERVICE_OP_DATA_MODEL_TRANSLATOR_INIT_TRANSLATION = "init-translation";
 	public static final String SERVICE_OP_DATA_MODEL_TRANSLATOR_ABORT_TRANSLATION = "abort-translation";
 	public static final String SERVICE_OP_DATA_MODEL_TRANSLATOR_GET_TRANSLATION_RESULT = "get-translation-result";
+	public static final String SERVICE_OP_INTERFACE_TRANSLATOR_CHECK_TARGETS = "check-targets";
+	public static final String SERVICE_OP_INTERFACE_TRANSLATOR_INIT_BRIDGE = "initialize-bridge";
+	public static final String SERVICE_OP_INTERFACE_TRANSLATOR_ABORT_BRIDGE = "abort-bridge";
 
 	// Common properties
 
