@@ -54,6 +54,7 @@ public final class Constants {
 	public static final String METADATA_KEY_INTERFACE_BRIDGE = "interfaceBridge";
 	public static final String METADATA_KEY_FROM = "from";
 	public static final String METADATA_KEY_TO = "to";
+	public static final String METADATA_KEY_DATA_MODEL_IDS = "dataModelIds";
 
 	public static final String GENERIC_HTTP_INTERFACE_TEMPLATE_NAME = "generic_http";
 	public static final String GENERIC_HTTPS_INTERFACE_TEMPLATE_NAME = "generic_https";
@@ -211,12 +212,15 @@ public final class Constants {
 	public static final String SERVICE_DEF_SYSTEM_DISCOVERY = "systemDiscovery";
 	public static final String SERVICE_DEF_SERVICE_DISCOVERY = "serviceDiscovery";
 	public static final String SERVICE_DEF_SERVICE_ORCHESTRATION = "serviceOrchestration";
+	public static final String SERVICE_DEF_AUTHORIZATION = "authorization";
 	public static final String SERVICE_DEF_AUTHORIZATION_TOKEN = "authorizationToken";
 	public static final String SERVICE_DEF_IDENTITY = "identity";
 	public static final String SERVICE_DEF_TRANSLATION_REPORT = "translationReport";
 	public static final String SERVICE_DEF_INTERFACE_BRIDGE_MANAGEMENT = "interfaceBridgeManagement";
+	public static final String SERVICE_DEF_DATA_MODEL_TRANSLATION = "dataModelTranslation";
 
 	public static final String SERVICE_OP_REGISTER = "register";
+	public static final String SERVICE_OP_GRANT = "grant";
 	public static final String SERVICE_OP_REVOKE = "revoke";
 	public static final String SERVICE_OP_REPORT = "report";
 	public static final String SERVICE_OP_ORCHESTRATION_PULL = "pull";

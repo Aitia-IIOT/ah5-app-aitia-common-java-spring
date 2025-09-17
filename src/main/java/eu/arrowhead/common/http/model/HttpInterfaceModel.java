@@ -34,7 +34,8 @@ public record HttpInterfaceModel(
 		List<String> accessAddresses,
 		int accessPort,
 		String basePath,
-		Map<String, HttpOperationModel> operations) implements InterfaceModel {
+		Map<String, HttpOperationModel> operations,
+		Map<String, HttpDataModelsOperationModel> dataModels) implements InterfaceModel {
 
 	//-------------------------------------------------------------------------------------------------
 	public HttpInterfaceModel {
@@ -53,6 +54,7 @@ public record HttpInterfaceModel(
 	public static final String PROP_NAME_ACCESS_PORT = "accessPort";
 	public static final String PROP_NAME_BASE_PATH = "basePath";
 	public static final String PROP_NAME_OPERATIONS = "operations";
+	public static final String PROP_NAME_DATA_MODELS = "dataModels";
 
 	//=================================================================================================
 	// methods
@@ -69,7 +71,8 @@ public record HttpInterfaceModel(
 				PROP_NAME_ACCESS_ADDRESSES, accessAddresses,
 				PROP_NAME_ACCESS_PORT, accessPort,
 				PROP_NAME_BASE_PATH, basePath,
-				PROP_NAME_OPERATIONS, operations);
+				PROP_NAME_OPERATIONS, operations,
+				PROP_NAME_DATA_MODELS, Utilities.isEmpty(dataModels) ? Map.of() : dataModels);
 	}
 
 	//=================================================================================================
@@ -87,6 +90,7 @@ public record HttpInterfaceModel(
 		private int accessPort;
 		private String basePath;
 		private Map<String, HttpOperationModel> operations = new HashMap<>();
+		private Map<String, HttpDataModelsOperationModel> dataModels = new HashMap<>();
 
 		//=================================================================================================
 		// methods
@@ -155,8 +159,23 @@ public record HttpInterfaceModel(
 		}
 
 		//-------------------------------------------------------------------------------------------------
+		public Builder dataModels(final Map<String, HttpDataModelsOperationModel> dataModels) {
+			this.dataModels = dataModels;
+			return this;
+		}
+
+		//-------------------------------------------------------------------------------------------------
+		public Builder dataModel(final String operationName, final HttpDataModelsOperationModel model) {
+			if (dataModels == null) {
+				dataModels = new HashMap<>();
+			}
+			dataModels.put(operationName, model);
+			return this;
+		}
+
+		//-------------------------------------------------------------------------------------------------
 		public HttpInterfaceModel build() {
-			return new HttpInterfaceModel(templateName, policy.name(), accessAddresses, accessPort, basePath, operations);
+			return new HttpInterfaceModel(templateName, policy.name(), accessAddresses, accessPort, basePath, operations, dataModels);
 		}
 	}
 }
