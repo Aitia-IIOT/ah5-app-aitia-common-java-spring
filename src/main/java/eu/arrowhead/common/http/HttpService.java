@@ -41,8 +41,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.util.Pair;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
@@ -359,19 +359,14 @@ public class HttpService {
 				}
 			}
 
-			int status = HttpStatus.OK.value();
-			final T response = headersSpec
+			final ResponseEntity<T> response = headersSpec
 					.retrieve()
-					.onStatus(httpStatus -> httpStatus.is2xxSuccessful(), clientResponse -> {
-						clientResponse.statusCode().value();
-						return null;
-					})
-					.bodyToMono(responseType)
+					.toEntity(responseType)
 					.block();
 
 			return Pair.of(
-					status,
-					response == null ? Optional.empty() : Optional.of(response));
+					response.getStatusCode().value(),
+					response == null || response.getBody() == null ? Optional.empty() : Optional.of(response.getBody()));
 		} catch (final WebClientResponseException ex) {
 			throw convertWebClientException(ex, uri.toString());
 		} catch (final Exception ex) {
@@ -493,7 +488,6 @@ public class HttpService {
 		final Builder builder = WebClient
 				.builder()
 				.clientConnector(new ReactorClientHttpConnector(client))
-				.defaultHeader(HttpHeaderNames.ACCEPT.toString(), MediaType.TEXT_PLAIN_VALUE, MediaType.APPLICATION_JSON_VALUE)
 				.defaultHeader(HttpHeaderNames.CONTENT_TYPE.toString(), MediaType.APPLICATION_JSON_VALUE);
 
 		return builder.build();
@@ -539,7 +533,12 @@ public class HttpService {
 		ErrorMessageDTO dto;
 		try {
 			dto = mapper.readValue(ex.getResponseBodyAsByteArray(), ErrorMessageDTO.class);
-		} catch (final IOException iex) {
+
+			if (dto.exceptionType() == null) {
+				// it is not an ErrorMessageDTO
+				throw new IOException("Not an ErrorMessageDTO object");
+			}
+		} catch (final IOException __) {
 			logger.debug("Unable to deserialize error message: {}", ex.getMessage());
 			logger.debug("Exception: ", ex);
 			logger.error("Request failed at {}, response status code: {}, status text: {}", uri, getStatusCodeAsString(ex), ex.getStatusText());
