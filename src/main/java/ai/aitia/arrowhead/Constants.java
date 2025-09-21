@@ -244,6 +244,7 @@ public final class Constants {
 	public static final int INTERFACE_TEMPLATE_NAME_MAX_LENGTH = VARCHAR_SMALL;
 	public static final int ADDRESS_MAX_LENGTH = VARCHAR_LARGE;
 	public static final int DATA_MODEL_ID_MAX_LENGTH = VARCHAR_SMALL;
+	public static final int ATTRIBUTE_MAX_LENGTH = VARCHAR_SMALL;
 
 	// Quartz related
 
