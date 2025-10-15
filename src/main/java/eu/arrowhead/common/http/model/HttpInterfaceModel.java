@@ -35,7 +35,7 @@ public record HttpInterfaceModel(
 		int accessPort,
 		String basePath,
 		Map<String, HttpOperationModel> operations,
-		Map<String, HttpDataModelsOperationModel> dataModels) implements InterfaceModel {
+		Map<String, DataModelsOperationModel> dataModels) implements InterfaceModel {
 
 	//-------------------------------------------------------------------------------------------------
 	public HttpInterfaceModel {
@@ -90,7 +90,7 @@ public record HttpInterfaceModel(
 		private int accessPort;
 		private String basePath;
 		private Map<String, HttpOperationModel> operations = new HashMap<>();
-		private Map<String, HttpDataModelsOperationModel> dataModels = new HashMap<>();
+		private Map<String, DataModelsOperationModel> dataModels = new HashMap<>();
 
 		//=================================================================================================
 		// methods
@@ -159,13 +159,13 @@ public record HttpInterfaceModel(
 		}
 
 		//-------------------------------------------------------------------------------------------------
-		public Builder dataModels(final Map<String, HttpDataModelsOperationModel> dataModels) {
+		public Builder dataModels(final Map<String, DataModelsOperationModel> dataModels) {
 			this.dataModels = dataModels;
 			return this;
 		}
 
 		//-------------------------------------------------------------------------------------------------
-		public Builder dataModel(final String operationName, final HttpDataModelsOperationModel model) {
+		public Builder dataModel(final String operationName, final DataModelsOperationModel model) {
 			if (dataModels == null) {
 				dataModels = new HashMap<>();
 			}

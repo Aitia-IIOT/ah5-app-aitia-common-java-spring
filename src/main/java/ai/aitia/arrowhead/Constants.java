@@ -34,6 +34,8 @@ public final class Constants {
 	public static final String LOCALHOST = "localhost";
 	public static final String HTTPS = "https";
 	public static final String HTTP = "http";
+	public static final String SSL = "ssl";
+	public static final String TCP = "tcp";
 	public static final int HTTP_PORT = 80;
 	public static final String ARROWHEAD_CONTEXT = "arrowheadContext";
 	public static final String SERVER_STANDALONE_MODE = "server.standalone.mode";
@@ -41,6 +43,7 @@ public final class Constants {
 	public static final String SERVER_PUBLIC_KEY = "server.public.key";
 	public static final String SERVER_PRIVATE_KEY = "server.private.key";
 	public static final String SERVER_CERTIFICATE = "server.certificate";
+	public static final int MQTT_DEFAULT_QOS = 0;
 
 	public static final String KEY_IDENTITY_TOKEN = "identity-token";
 	public static final String KEY_IDENTITY_RENEWAL_THRESHOLD = "identity-renewal-threshold";

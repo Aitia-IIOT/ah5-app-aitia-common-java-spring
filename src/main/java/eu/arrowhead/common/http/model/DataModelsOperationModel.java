@@ -16,7 +16,7 @@
  *******************************************************************************/
 package eu.arrowhead.common.http.model;
 
-public record HttpDataModelsOperationModel(
+public record DataModelsOperationModel(
 		String input,
 		String output) {
 
@@ -54,8 +54,8 @@ public record HttpDataModelsOperationModel(
 		}
 
 		//-------------------------------------------------------------------------------------------------
-		public HttpDataModelsOperationModel build() {
-			return new HttpDataModelsOperationModel(input, output);
+		public DataModelsOperationModel build() {
+			return new DataModelsOperationModel(input, output);
 		}
 	}
 }

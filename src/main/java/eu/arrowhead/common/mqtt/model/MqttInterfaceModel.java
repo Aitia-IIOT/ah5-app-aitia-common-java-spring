@@ -17,6 +17,7 @@
 package eu.arrowhead.common.mqtt.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ import org.springframework.util.Assert;
 
 import ai.aitia.arrowhead.Constants;
 import eu.arrowhead.common.Utilities;
+import eu.arrowhead.common.http.model.DataModelsOperationModel;
 import eu.arrowhead.common.model.InterfaceModel;
 import eu.arrowhead.dto.enums.ServiceInterfacePolicy;
 
@@ -35,7 +37,8 @@ public record MqttInterfaceModel(
 		List<String> accessAddresses,
 		int accessPort,
 		String baseTopic,
-		Set<String> operations) implements InterfaceModel {
+		Set<String> operations,
+		Map<String, DataModelsOperationModel> dataModels) implements InterfaceModel {
 
 	//-------------------------------------------------------------------------------------------------
 	public MqttInterfaceModel {
@@ -54,6 +57,7 @@ public record MqttInterfaceModel(
 	public static final String PROP_NAME_ACCESS_PORT = "accessPort";
 	public static final String PROP_NAME_BASE_TOPIC = "baseTopic";
 	public static final String PROP_NAME_OPERATIONS = "operations";
+	public static final String PROP_NAME_DATA_MODELS = "dataModels";
 
 	//=================================================================================================
 	// methods
@@ -69,7 +73,8 @@ public record MqttInterfaceModel(
 		return Map.of(PROP_NAME_ACCESS_ADDRESSES, accessAddresses,
 				PROP_NAME_ACCESS_PORT, accessPort,
 				PROP_NAME_BASE_TOPIC, baseTopic,
-				PROP_NAME_OPERATIONS, operations);
+				PROP_NAME_OPERATIONS, operations,
+				PROP_NAME_DATA_MODELS, Utilities.isEmpty(dataModels) ? Map.of() : dataModels);
 	}
 
 	//=================================================================================================
@@ -87,6 +92,7 @@ public record MqttInterfaceModel(
 		private int accessPort;
 		private String baseTopic;
 		private Set<String> operations = new HashSet<>();
+		private Map<String, DataModelsOperationModel> dataModels = new HashMap<>();
 
 		//=================================================================================================
 		// methods
@@ -157,8 +163,23 @@ public record MqttInterfaceModel(
 		}
 
 		//-------------------------------------------------------------------------------------------------
+		public Builder dataModels(final Map<String, DataModelsOperationModel> dataModels) {
+			this.dataModels = dataModels;
+			return this;
+		}
+
+		//-------------------------------------------------------------------------------------------------
+		public Builder dataModel(final String operationName, final DataModelsOperationModel model) {
+			if (dataModels == null) {
+				dataModels = new HashMap<>();
+			}
+			dataModels.put(operationName, model);
+			return this;
+		}
+
+		//-------------------------------------------------------------------------------------------------
 		public MqttInterfaceModel build() {
-			return new MqttInterfaceModel(templateName, policy.name(), accessAddresses, accessPort, baseTopic, operations);
+			return new MqttInterfaceModel(templateName, policy.name(), accessAddresses, accessPort, baseTopic, operations, dataModels);
 		}
 	}
 }
