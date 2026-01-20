@@ -51,6 +51,8 @@ public final class Constants {
 
 	public static final String SETTING_KEY_DATA_MODEL_TRANSLATOR_GET_RESULT_TRIES = "dataModelTranslatorGetResultTries";
 	public static final String SETTING_KEY_DATA_MODEL_TRANSLATOR_GET_RESULT_WAIT = "dataModelTranslatorGetResultWait"; // in ms
+	public static final String SETTING_KEY_PROVIDER_SERVICE_GET_RESULT_TRIES = "providerServiceGetResultTries";
+	public static final String SETTING_KEY_PROVIDER_SERVICE_GET_RESULT_WAIT = "providerServiceGetResultWait"; // in ms
 
 	public static final String METADATA_KEY_X509_PUBLIC_KEY = "x509PublicKey";
 	public static final String METADATA_KEY_INTERFACE_BRIDGE = "interfaceBridge";
