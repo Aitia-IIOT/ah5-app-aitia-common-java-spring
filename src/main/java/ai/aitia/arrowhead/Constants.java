@@ -224,6 +224,7 @@ public final class Constants {
 	public static final String SERVICE_DEF_DATA_MODEL_TRANSLATION = "dataModelTranslation";
 
 	public static final String SERVICE_OP_REGISTER = "register";
+	public static final String SERVICE_OP_LOOKUP = "lookup";
 	public static final String SERVICE_OP_GRANT = "grant";
 	public static final String SERVICE_OP_REVOKE = "revoke";
 	public static final String SERVICE_OP_REPORT = "report";
