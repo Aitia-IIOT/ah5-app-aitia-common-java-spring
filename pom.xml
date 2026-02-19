@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ai.aitia.arrowhead</groupId>
 	<artifactId>arrowhead-app-common</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>Aitia Common Library for AH5</name>
 	<description>Aitia Common Library for Arrowhead 5 Compatible Applications using Spring Boot</description>
 
