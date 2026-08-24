@@ -20,7 +20,7 @@
 		<mvn.compiler.version>3.13.0</mvn.compiler.version>
 		<mvn.compile.target>21</mvn.compile.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<arrowhead.framework.version>5.2.1</arrowhead.framework.version>
+		<arrowhead.framework.version>5.2.2</arrowhead.framework.version>
 	</properties>
 
 	<dependencies>
