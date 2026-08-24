@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ai.aitia.arrowhead</groupId>
 	<artifactId>arrowhead-app-common</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<name>Aitia Common Library for AH5</name>
 	<description>Aitia Common Library for Arrowhead 5 Compatible Applications using Spring Boot</description>
 
@@ -20,7 +20,7 @@
 		<mvn.compiler.version>3.13.0</mvn.compiler.version>
 		<mvn.compile.target>21</mvn.compile.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<arrowhead.framework.version>5.2.0</arrowhead.framework.version>
+		<arrowhead.framework.version>5.2.1</arrowhead.framework.version>
 	</properties>
 
 	<dependencies>
